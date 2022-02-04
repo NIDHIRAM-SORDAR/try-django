@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,11 @@ print("BASE_DIR", BASE_DIR)
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0+dmu6*lky0l743o^=)8-^27tn0)dzoi)6-lzb1i)egsso_84h'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY', 'django-insecure-0+dmu6*lky0l743o^=)8-^27tn0)dzoi)6-lzb1i)egsso_84h')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = []
 
@@ -53,13 +55,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'trydjango.urls'
-LOGIN_URL='/login/'
+LOGIN_URL = '/login/'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / "templates",          
+            BASE_DIR / "templates",
         ],
         'APP_DIRS': True,
         'OPTIONS': {
