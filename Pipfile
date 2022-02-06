@@ -5,8 +5,13 @@ name = "pypi"
 
 [packages]
 Django = ">=3.2,<3.3"
+gunicorn = "*"
+dj-database-url = "*"
+psycopg2-binary = "*"
+whitenoise = "*"
 
 [dev-packages]
+autopep8 = "*"
 
 [requires]
 python_version = "3.7"
